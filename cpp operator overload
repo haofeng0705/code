@@ -17,7 +17,7 @@ private:
 complex::complex(): m_real(0.0), m_imag(0.0){ }
 complex::complex(double real, double imag): m_real(real), m_imag(imag){ }
 
-//实现运算符重载
+//实现运算符重载(简单写法）
 complex complex::operator+(const complex &A)const{
     return complex(this->m_real + A.m_real, this->m_imag + A.m_imag);
 }
