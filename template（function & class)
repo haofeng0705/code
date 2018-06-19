@@ -1,0 +1,77 @@
+//function template
+
+
+#include <iostream>
+using namespace std;
+//声明函数模板
+template<typename T> T max(T a, T b, T c);
+int main( ){
+    //求三个整数的最大值
+    int i1, i2, i3, i_max;
+    cin >> i1 >> i2 >> i3;
+    i_max = max(i1,i2,i3);
+    cout << "i_max=" << i_max << endl;
+    //求三个浮点数的最大值
+    double d1, d2, d3, d_max;
+    cin >> d1 >> d2 >> d3;
+    d_max = max(d1,d2,d3);
+    cout << "d_max=" << d_max << endl;
+    //求三个长整型数的最大值
+    long g1, g2, g3, g_max;
+    cin >> g1 >> g2 >> g3;
+    g_max = max(g1,g2,g3);
+    cout << "g_max=" << g_max << endl;
+    return 0;
+}
+//定义函数模板
+template<typename T>  //模板头，这里不能有分号
+T max(T a, T b, T c){ //函数头
+    T max_num = a;
+    if(b > max_num) max_num = b;
+    if(c > max_num) max_num = c;
+    return max_num;
+}
+
+
+
+//class template
+#include <iostream>
+using namespace std;
+template<class T1, class T2>  //这里不能有分号
+class Point{
+public:
+    Point(T1 x, T2 y): m_x(x), m_y(y){ }
+public:
+    T1 getX() const;  //获取x坐标
+    void setX(T1 x);  //设置x坐标
+    T2 getY() const;  //获取y坐标
+    void setY(T2 y);  //设置y坐标
+private:
+    T1 m_x;  //x坐标
+    T2 m_y;  //y坐标
+};
+template<class T1, class T2>  //模板头
+T1 Point<T1, T2>::getX() const /*函数头*/ {
+    return m_x;
+}
+template<class T1, class T2>
+void Point<T1, T2>::setX(T1 x){
+    m_x = x;
+}
+template<class T1, class T2>
+T2 Point<T1, T2>::getY() const{
+    return m_y;
+}
+template<class T1, class T2>
+void Point<T1, T2>::setY(T2 y){
+    m_y = y;
+}
+int main(){
+    Point<int, int> p1(10, 20);
+    cout<<"x="<<p1.getX()<<", y="<<p1.getY()<<endl;
+    Point<int, char*> p2(10, "东经180度");
+    cout<<"x="<<p2.getX()<<", y="<<p2.getY()<<endl;
+    Point<char*, char*> *p3 = new Point<char*, char*>("东经180度", "北纬210度");
+    cout<<"x="<<p3->getX()<<", y="<<p3->getY()<<endl;
+    return 0;
+}
