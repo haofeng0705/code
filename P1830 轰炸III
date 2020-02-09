@@ -1,0 +1,31 @@
+//P1830 轰炸III
+#include <bits/stdc++.h>
+using namespace std;
+const int size = 10002;
+int X1[size], Y1[size], X2[size], Y2[size];
+
+int main(){
+    int n, m, x, y, a, b;
+    cin >> n >> m >> x >> y;
+    for (int i = 0; i < x; ++i) {
+        cin >> X1[i] >> Y1[i] >> X2[i] >> Y2[i];
+    }
+    int cnt = 0, last = 0;
+    for (int j = 0; j < y; ++j) {
+        cin >> a >> b;
+        cnt = 0;
+        for (int i = 0; i < x; ++i) {
+            if (a >= X1[i] && a <= X2[i] && b >= Y1[i] && b <= Y2[i]) {
+                cnt ++;
+                last = i;
+            }
+        }
+        if(!cnt)
+            cout << "N" << endl;
+        else
+            cout << "Y "<<cnt <<" " << ++last<< endl;
+
+    }
+
+    return 0;
+}
